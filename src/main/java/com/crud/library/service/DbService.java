@@ -27,6 +27,9 @@ public class DbService {
     public Reader saveReader(Reader reader) {
         return readerDao.save(reader);
     }
+    public void deleteReaderById(Long id){
+        readerDao.deleteById(id);
+    }
 
 
 }

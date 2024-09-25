@@ -4,6 +4,7 @@ import com.crud.library.domain.Reader;
 import com.crud.library.dto.ReaderDto;
 import com.crud.library.errors.ReaderNotFoundException;
 import com.crud.library.mappers.ReaderMapper;
+import com.crud.library.repository.ReaderDao;
 import com.crud.library.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,11 +21,13 @@ public class ReaderController {
 
      private final ReaderMapper readerMapper;
      private final DbService dbService;
+    private final ReaderDao readerDao;
 
     @Autowired
-    public ReaderController(ReaderMapper readerMapper, DbService dbService) {
+    public ReaderController(ReaderMapper readerMapper, DbService dbService, ReaderDao readerDao) {
         this.readerMapper = readerMapper;
         this.dbService = dbService;
+        this.readerDao = readerDao;
     }
 
     @GetMapping
@@ -42,7 +45,24 @@ public class ReaderController {
     public void createReader(@RequestBody ReaderDto readerDto) {
         Reader reader = readerMapper.mapToReader(readerDto);
         dbService.saveReader(reader);
+    }
 
+    @PutMapping
+    public ResponseEntity<ReaderDto> updateReader(@RequestBody ReaderDto readerDto) {
+        Reader reader = readerMapper.mapToReader(readerDto);
+        Reader savedReader = dbService.saveReader(reader);
+        return ResponseEntity.ok(readerMapper.mapToReaderDto(savedReader));
+    }
+
+
+
+
+
+
+    @DeleteMapping(value = "{readerId}")
+    public ResponseEntity<Void> deleteReader(@PathVariable Long readerId) {
+        dbService.deleteReaderById(readerId);
+        return ResponseEntity.ok().build();
     }
 
 }
