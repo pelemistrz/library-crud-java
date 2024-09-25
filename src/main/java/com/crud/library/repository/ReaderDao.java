@@ -14,4 +14,5 @@ import java.util.Optional;
 public interface ReaderDao extends CrudRepository<Reader, Long> {
     List<Reader> findAll();
     Optional<Reader> findById(Long id);
+    Reader save(Reader reader);
 }

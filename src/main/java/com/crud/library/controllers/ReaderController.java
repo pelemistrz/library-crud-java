@@ -6,6 +6,7 @@ import com.crud.library.errors.ReaderNotFoundException;
 import com.crud.library.mappers.ReaderMapper;
 import com.crud.library.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,8 +38,10 @@ public class ReaderController {
         return ResponseEntity.ok(readerMapper.mapToReaderDto(dbService.getReader(readerId)));
     }
 
-    @PostMapping
-    public void createReader(ReaderDto readerDto) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createReader(@RequestBody ReaderDto readerDto) {
+        Reader reader = readerMapper.mapToReader(readerDto);
+        dbService.saveReader(reader);
 
     }
 

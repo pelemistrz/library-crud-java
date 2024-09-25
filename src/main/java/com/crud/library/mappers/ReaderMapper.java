@@ -14,7 +14,7 @@ public class ReaderMapper {
                 readerDto.getId(),
                 readerDto.getFirstName(),
                 readerDto.getLastName(),
-                readerDto.getDateOpenAccount()
+               readerDto.getDateOpenAccount()
         );
     }
     public ReaderDto mapToReaderDto(final Reader reader){

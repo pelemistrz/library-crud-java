@@ -24,6 +24,9 @@ public class DbService {
     public Reader getReader(Long id) throws ReaderNotFoundException{
         return readerDao.findById(id).orElseThrow(ReaderNotFoundException::new);
     }
+    public Reader saveReader(Reader reader) {
+        return readerDao.save(reader);
+    }
 
 
 }
