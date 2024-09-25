@@ -1,7 +1,5 @@
-package com.crud.library.copy;
+package com.crud.library.domain;
 
-import com.crud.library.domain.Borrow;
-import com.crud.library.title.Title;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

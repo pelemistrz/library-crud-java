@@ -1,13 +1,11 @@
-package com.crud.library.title;
+package com.crud.library.domain;
 
 
-import com.crud.library.copy.Copy;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,11 +28,12 @@ public class Title {
     }
 
     @Id
+    @NotNull
     @GeneratedValue
     public Long getId() {
         return id;
     }
-    @Column(name="title")
+    @Column(name="title", unique = true)
     public String getTitle() {
         return title;
     }

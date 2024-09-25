@@ -1,9 +1,10 @@
 package com.crud.library.copy.dao;
 
-import com.crud.library.copy.Copy;
-import com.crud.library.copy.Status;
-import com.crud.library.title.Title;
-import com.crud.library.title.dao.TitleDao;
+import com.crud.library.domain.Copy;
+import com.crud.library.domain.Status;
+import com.crud.library.repository.CopyDao;
+import com.crud.library.domain.Title;
+import com.crud.library.repository.TitleDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

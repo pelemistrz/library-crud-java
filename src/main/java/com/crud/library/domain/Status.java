@@ -1,4 +1,4 @@
-package com.crud.library.copy;
+package com.crud.library.domain;
 
 public enum Status {
     CIRCULATION,

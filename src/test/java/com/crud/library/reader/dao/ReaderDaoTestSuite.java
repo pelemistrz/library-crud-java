@@ -1,7 +1,8 @@
 package com.crud.library.reader.dao;
 
 
-import com.crud.library.reader.Reader;
+import com.crud.library.domain.Reader;
+import com.crud.library.repository.ReaderDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,8 +1,8 @@
 package com.crud.library.title.dao;
 
 
-import com.crud.library.title.Title;
-import jakarta.persistence.Access;
+import com.crud.library.repository.TitleDao;
+import com.crud.library.domain.Title;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

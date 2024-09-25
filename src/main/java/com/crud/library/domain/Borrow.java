@@ -1,10 +1,7 @@
 package com.crud.library.domain;
 
 
-import com.crud.library.copy.Copy;
-import com.crud.library.reader.Reader;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
