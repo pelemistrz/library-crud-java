@@ -2,12 +2,14 @@ package com.crud.library.reader;
 
 //import com.crud.library.domain.Borrow;
 //import com.crud.library.domain.Copy;
+import com.crud.library.domain.Borrow;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class Reader {
     private String firstName;
     private String lastName;
     private Date dateOpenAccount;
-//    private List<Borrow> borrowList;
+    private List<Borrow> borrowList = new ArrayList<>();
 
     public Reader(String firstName, String lastName) {
         this.firstName = firstName;
@@ -50,10 +52,19 @@ public class Reader {
         return dateOpenAccount;
     }
 
-    //    public void setBorrowList(List<Borrow> borrowList) {
-//        this.borrowList = borrowList;
-//    }
-//
+    @OneToMany(
+            targetEntity = Borrow.class,
+            mappedBy = "reader",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    public List<Borrow> getBorrowList() {
+        return borrowList;
+    }
+
+
+
+
 //    @OneToMany(
 //            targetEntity = Copy.class,
 //            mappedBy = "reader",

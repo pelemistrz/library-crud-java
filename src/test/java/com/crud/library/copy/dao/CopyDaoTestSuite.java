@@ -24,26 +24,19 @@ public class CopyDaoTestSuite {
         //Given
         Title title = new Title("Tolkien","LORD",2000);
         Copy copy1 = new Copy(title, Status.LOST);
-        Copy copy2 = new Copy(title, Status.CIRCULATION);
+
         //when
         title.getCopies().add(copy1);
-        title.getCopies().add(copy2);
-        titleDao.save(title);
         copyDao.save(copy1);
-        copyDao.save(copy2);
 
         //then
         Long idCopy1 = copy1.getId();
-        Long idCopy2 = copy2.getId();
-        Long idTitle = title.getId();
 
         Optional<Copy> optionalCopy = copyDao.findById(idCopy1);
         assertTrue(optionalCopy.isPresent());
 
         //delete
         copyDao.deleteById(idCopy1);
-        copyDao.deleteById(idCopy2);
-        titleDao.deleteById(idTitle);
 
     }
 }

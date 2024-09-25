@@ -1,9 +1,13 @@
 package com.crud.library.copy;
 
+import com.crud.library.domain.Borrow;
 import com.crud.library.title.Title;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -15,6 +19,8 @@ public class Copy {
     private Long id;
     private Title title;
     private Status status;
+    private List<Borrow> borrowList = new ArrayList<>();
+
 
     public Copy(Title title, Status status) {
         this.title = title;
@@ -27,7 +33,9 @@ public class Copy {
         return id;
     }
 
-    @ManyToOne
+    @ManyToOne(
+            cascade = CascadeType.ALL
+    )
     @JoinColumn(name="title_id")
     public Title getTitle() {
         return title;
@@ -39,16 +47,13 @@ public class Copy {
         return status;
     }
 
-
-//    private List<Borrow> borrowList;
-
-//    @OneToMany(
-//            targetEntity = Copy.class,
-//            mappedBy = "copy",
-//            cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY
-//    )
-//    public List<Borrow> getBorrowList() {
-//        return borrowList;
-//    }
+    @OneToMany(
+            targetEntity = Borrow.class,
+            mappedBy = "copy",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    public List<Borrow> getBorrowList() {
+        return borrowList;
+    }
 }
