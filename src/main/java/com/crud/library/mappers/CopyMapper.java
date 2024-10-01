@@ -26,6 +26,7 @@ public class CopyMapper {
         Status status = Status.valueOf(copyDto.getStatus());
 
         return new Copy(
+                copyDto.getId(),
                 title,
                 status
         );

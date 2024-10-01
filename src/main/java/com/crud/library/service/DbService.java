@@ -19,11 +19,20 @@ import java.util.Optional;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor(onConstructor_ = {@Autowired})
+
 public class DbService {
     private final ReaderDao readerDao;
     private final TitleDao titleDao;
     private final CopyDao copyDao;
+
+    @Autowired
+    public DbService(ReaderDao readerDao, TitleDao titleDao, CopyDao copyDao) {
+        this.readerDao = readerDao;
+        this.titleDao = titleDao;
+        this.copyDao = copyDao;
+    }
+
+
 
     //Readers
     public List<Reader> getAllReaders() {
@@ -51,6 +60,9 @@ public class DbService {
     public void deleteTitleById(Long id){
         titleDao.deleteById(id);
     }
+    public Title getTitleByTitle(String title) {
+        return titleDao.findByTitle(title);
+    }
 
     //Copies
     public List<Copy> getAllCopies() {
@@ -64,5 +76,9 @@ public class DbService {
     }
     public void deleteCopyById(Long id){
         copyDao.deleteById(id);
+    }
+
+    public List<Copy> getAllCopiesByTitle(Title title) {
+        return copyDao.findAllByTitle(title);
     }
 }

@@ -9,8 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -23,21 +25,26 @@ public class CopyDaoTestSuite {
     @Test
     public void testCopyDaoSave() {
         //Given
-        Title title = new Title("Tolkien","LORD",2000);
-        Copy copy1 = new Copy(title, Status.LOST);
+        Title title1 = new Title("Tolkien","LORD",2000);
+
+        Copy copy1 = new Copy(title1, Status.AVALAIBLE);
+        Copy copy2 = new Copy(title1, Status.AVALAIBLE);
 
         //when
-        title.getCopies().add(copy1);
+        title1.getCopies().add(copy1);
+        title1.getCopies().add(copy2);
         copyDao.save(copy1);
+        copyDao.save(copy2);
 
         //then
         Long idCopy1 = copy1.getId();
+        Long idCopy2 = copy2.getId();
 
-        Optional<Copy> optionalCopy = copyDao.findById(idCopy1);
-        assertTrue(optionalCopy.isPresent());
+        List<Copy> optionalCopy = copyDao.findAllByTitle(title1);
+        assertEquals(2, optionalCopy.size());
 
         //delete
-        copyDao.deleteById(idCopy1);
-
+//        copyDao.deleteById(idCopy1);
+//        copyDao.deleteById(idCopy2);
     }
 }
