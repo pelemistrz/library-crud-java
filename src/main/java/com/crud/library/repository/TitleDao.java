@@ -11,6 +11,8 @@ import java.util.Optional;
 @Transactional
 @Repository
 public interface TitleDao extends CrudRepository<Title, Long> {
+
+    Title findByTitle(String title);
     List<Title> findAll();
     Optional<Title> findById(Long id);
     Title save(Title title);

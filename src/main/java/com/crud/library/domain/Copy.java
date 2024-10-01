@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +26,19 @@ public class Copy {
         this.status = status;
     }
 
+    public Copy(Long id, Title title, Status status) {
+        this.id = id;
+        this.title = title;
+        this.status = status;
+    }
+
     @Id
     @GeneratedValue
         public Long getId() {
         return id;
     }
 
+    @NotNull
     @ManyToOne(
             cascade = CascadeType.ALL
     )

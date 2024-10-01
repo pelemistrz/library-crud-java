@@ -28,6 +28,7 @@ public class TitleController {
         List<Title> titles = dbService.getAllTitles();
         return titleMapper.mapToTitleDtoList(titles);
     }
+
     @GetMapping(value="{titleId}")
     public ResponseEntity<TitleDto> getTitle(@PathVariable Long titleId) throws TitleNotFoundException {
         return ResponseEntity.ok(titleMapper.mapToTitleDto(dbService.getTitle(titleId)));

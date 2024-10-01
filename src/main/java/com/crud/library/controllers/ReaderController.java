@@ -51,11 +51,6 @@ public class ReaderController {
         return ResponseEntity.ok(readerMapper.mapToReaderDto(savedReader));
     }
 
-
-
-
-
-
     @DeleteMapping(value = "{readerId}")
     public ResponseEntity<Void> deleteReader(@PathVariable Long readerId) {
         dbService.deleteReaderById(readerId);

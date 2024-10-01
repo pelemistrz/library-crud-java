@@ -1,11 +1,14 @@
 package com.crud.library.service;
 
 
+import com.crud.library.domain.Copy;
 import com.crud.library.domain.Reader;
 import com.crud.library.domain.Title;
 import com.crud.library.dto.ReaderDto;
+import com.crud.library.errors.CopyNotFoundException;
 import com.crud.library.errors.ReaderNotFoundException;
 import com.crud.library.errors.TitleNotFoundException;
+import com.crud.library.repository.CopyDao;
 import com.crud.library.repository.ReaderDao;
 import com.crud.library.repository.TitleDao;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +23,7 @@ import java.util.List;
 public class DbService {
     private final ReaderDao readerDao;
     private final TitleDao titleDao;
+    private final CopyDao copyDao;
 
     //Readers
     public List<Reader> getAllReaders() {
@@ -46,5 +50,19 @@ public class DbService {
     }
     public void deleteTitleById(Long id){
         titleDao.deleteById(id);
+    }
+
+    //Copies
+    public List<Copy> getAllCopies() {
+        return copyDao.findAll();
+    }
+    public Copy getCopy(Long id) throws CopyNotFoundException {
+        return copyDao.findById(id).orElseThrow(CopyNotFoundException::new);
+    }
+    public Copy saveCopy(Copy copy) {
+        return copyDao.save(copy);
+    }
+    public void deleteCopyById(Long id){
+        copyDao.deleteById(id);
     }
 }
