@@ -11,8 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -21,13 +19,12 @@ public class ReaderController {
 
      private final ReaderMapper readerMapper;
      private final DbService dbService;
-    private final ReaderDao readerDao;
+
 
     @Autowired
-    public ReaderController(ReaderMapper readerMapper, DbService dbService, ReaderDao readerDao) {
+    public ReaderController(ReaderMapper readerMapper, DbService dbService) {
         this.readerMapper = readerMapper;
         this.dbService = dbService;
-        this.readerDao = readerDao;
     }
 
     @GetMapping

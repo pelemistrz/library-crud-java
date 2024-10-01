@@ -2,12 +2,14 @@ package com.crud.library.domain;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @NoArgsConstructor
 @Setter
@@ -22,6 +24,13 @@ public class Title {
     private List<Copy> copies = new ArrayList<>();
 
     public Title( String author,String title, Integer publishYear) {
+        this.title = title;
+        this.author = author;
+        this.publishYear = publishYear;
+    }
+
+    public Title(Long id, String title, String author, Integer publishYear) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.publishYear = publishYear;

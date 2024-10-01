@@ -15,5 +15,7 @@ public class TitleDto {
     private String title;
     private String author;
     private Integer publishYear;
-    private List<Copy> copies;
+//    private List<Copy> copies;
+
+
 }
