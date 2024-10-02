@@ -32,5 +32,10 @@ public class BorrowController {
         Borrow savedBorrow = dbService.saveBorrow(borrow);
         return ResponseEntity.ok(borrowMapper.mapToBorrowDto(savedBorrow));
     }
+    @PostMapping("/return")
+    public ResponseEntity<BorrowDto> returnBook(@RequestParam Long borrowId) {
+        Borrow borrow = dbService.returnBook(borrowId);
+        return ResponseEntity.ok(borrowMapper.mapToBorrowDto(borrow));
+    }
 
 }

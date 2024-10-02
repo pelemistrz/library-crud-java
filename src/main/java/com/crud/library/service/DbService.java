@@ -13,6 +13,8 @@ import com.crud.library.repository.TitleDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.Optional;
 
 import java.util.List;
@@ -85,5 +87,14 @@ public class DbService {
 
 
         return borrowDao.save(borrow);
+    }
+
+    public Borrow returnBook(Long borrowId) {
+       Optional<Borrow> borrowOpt= borrowDao.findById(borrowId);
+       Borrow borrow = borrowOpt.get();
+        borrow.setReturnDate(new Date());
+        borrow.getCopy().setStatus(Status.AVALAIBLE);
+        return borrowDao.save(borrow);
+
     }
 }
