@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CopyMapper {
@@ -22,7 +23,8 @@ public class CopyMapper {
 
     public Copy mapToCopy(final CopyDto copyDto) {
 
-        Title title = titleDao.findByTitle(copyDto.getTitle());
+        Optional<Title> titleOpt = titleDao.findById(copyDto.getTitleId());
+        Title title = titleOpt.get();
         Status status = Status.valueOf(copyDto.getStatus());
 
         return new Copy(
@@ -34,7 +36,7 @@ public class CopyMapper {
     public CopyDto mapToCopyDto(final Copy copy) {
         return new CopyDto(
                 copy.getId(),
-                copy.getTitle().getTitle(),
+                copy.getTitle().getId(),
                 copy.getStatus().name()
         );
     }

@@ -8,14 +8,14 @@ import lombok.Getter;
 @Getter
 public class CopyDto {
     private Long id;
-    private String title;
+    private Long titleId;
     private String status;
 
     @Override
     public String toString() {
         return "CopyDto{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
+                ", title='" + titleId + '\'' +
                 ", status='" + status + '\'' +
                 '}';
     }

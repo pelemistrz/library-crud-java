@@ -1,13 +1,12 @@
 package com.crud.library.service;
 
 
-import com.crud.library.domain.Copy;
-import com.crud.library.domain.Reader;
-import com.crud.library.domain.Title;
+import com.crud.library.domain.*;
 import com.crud.library.dto.ReaderDto;
 import com.crud.library.errors.CopyNotFoundException;
 import com.crud.library.errors.ReaderNotFoundException;
 import com.crud.library.errors.TitleNotFoundException;
+import com.crud.library.repository.BorrowDao;
 import com.crud.library.repository.CopyDao;
 import com.crud.library.repository.ReaderDao;
 import com.crud.library.repository.TitleDao;
@@ -18,21 +17,13 @@ import java.util.Optional;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
-
 public class DbService {
     private final ReaderDao readerDao;
     private final TitleDao titleDao;
     private final CopyDao copyDao;
-
-    @Autowired
-    public DbService(ReaderDao readerDao, TitleDao titleDao, CopyDao copyDao) {
-        this.readerDao = readerDao;
-        this.titleDao = titleDao;
-        this.copyDao = copyDao;
-    }
-
-
+    private final BorrowDao borrowDao;
 
     //Readers
     public List<Reader> getAllReaders() {
@@ -79,6 +70,20 @@ public class DbService {
     }
 
     public List<Copy> getAllCopiesByTitle(Title title) {
-        return copyDao.findAllByTitle(title);
+        return copyDao.findAllByTitleAndStatus(title, Status.AVALAIBLE);
+    }
+
+    //Borrows
+    public List<Borrow> getAllBorrows() {
+        return borrowDao.findAll();
+    }
+
+    public Borrow saveBorrow(Borrow borrow) {
+        Copy copy = borrow.getCopy();
+        copy.setStatus(Status.CIRCULATION);
+        copyDao.save(copy);
+
+
+        return borrowDao.save(borrow);
     }
 }

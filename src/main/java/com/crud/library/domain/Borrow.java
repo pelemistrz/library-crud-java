@@ -2,13 +2,18 @@ package com.crud.library.domain;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
 
+
+
+
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="borrows")
 public class Borrow {
@@ -25,6 +30,14 @@ public class Borrow {
         this.borrowDate = new Date();
         this.returnDate = null;
     }
+
+//    public Borrow(Reader reader, Copy copy, Date borrowDate, Date returnDate) {
+//        this.reader = reader;
+//        this.copy = copy;
+//        this.borrowDate = borrowDate;
+//        this.returnDate = returnDate;
+//    }
+
     @Id
     @GeneratedValue
     @Column(name="id")

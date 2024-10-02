@@ -1,6 +1,7 @@
 package com.crud.library.controllers;
 
 import com.crud.library.domain.Copy;
+import com.crud.library.domain.Status;
 import com.crud.library.domain.Title;
 import com.crud.library.dto.CopyDto;
 import com.crud.library.errors.CopyNotFoundException;
@@ -28,7 +29,7 @@ public class CopyController {
 
 
 
-    @GetMapping()
+    @GetMapping
     public List<CopyDto> getCopies(){
         List<Copy> copies = dbService.getAllCopies();
         return copyMapper.mapToCopyDtoList(copies);
@@ -48,9 +49,10 @@ public class CopyController {
         return ResponseEntity.ok(copyMapper.mapToCopyDto(dbService.getCopy(copyId)));
     }
 
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createCopy(@RequestBody CopyDto copyDto) {
-        System.out.println(copyDto.toString());
+
         Copy copy = copyMapper.mapToCopy(copyDto);
         dbService.saveCopy(copy);
     }

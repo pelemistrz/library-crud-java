@@ -11,8 +11,21 @@ import java.util.Date;
 @Getter
 public class BorrowDto {
     private Long id;
-    private Reader reader;
-    private Copy copy;
+    private Long readerId;
+    private Long copyId;
     private Date borrowDate;
     private Date returnDate;
+
+
+
+    @Override
+    public String toString() {
+        return "BorrowDto{" +
+                "id=" + id +
+                ", readerId=" + readerId +
+                ", copyId=" + copyId +
+                ", borrowDate=" + borrowDate +
+                ", returnDate=" + returnDate +
+                '}';
+    }
 }

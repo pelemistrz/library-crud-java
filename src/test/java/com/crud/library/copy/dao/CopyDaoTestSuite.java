@@ -28,7 +28,7 @@ public class CopyDaoTestSuite {
         Title title1 = new Title("Tolkien","LORD",2000);
 
         Copy copy1 = new Copy(title1, Status.AVALAIBLE);
-        Copy copy2 = new Copy(title1, Status.AVALAIBLE);
+        Copy copy2 = new Copy(title1, Status.LOST);
 
         //when
         title1.getCopies().add(copy1);
